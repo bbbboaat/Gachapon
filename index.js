@@ -40,6 +40,11 @@ app.post("/register", async (req, res) => {
   let _role = req.body.role || "";
   let _tier = req.body.tier || "";
 
+  let usernameid = await User.findOne({
+    username: _username
+  })
+
+  if (usernameid === null) {
   if (_username === "" || _password === "" || _role === "" || _tier === "") {
     resStatus = 400;
     resMessage = "bad request";
@@ -54,6 +59,10 @@ app.post("/register", async (req, res) => {
   await newUser.save()
 
   res.status(resStatus).send({ resMessage });
+}
+else {
+  return res.json({message : "username is unavailable"})
+}
 });
 
 app.post("/login", async (req, res) => {
