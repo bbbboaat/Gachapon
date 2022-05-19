@@ -1,14 +1,11 @@
-const mongoose = require('mongoose')
-
-
+const mongoose = require("mongoose");
 
 const Gachaschema = new mongoose.Schema({
-    Item : String,
-    Rank : String 
+  gname: String,
+  item: String,
+  rank: String,
 });
 
-const Gacha = mongoose.model('Login', Gachaschema);
+const Gacha = mongoose.model("Gacha", Gachaschema);
 
-module.exports = Gacha
-
-
+module.exports = Gacha;
