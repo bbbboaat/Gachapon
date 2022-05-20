@@ -8,12 +8,10 @@ const tokenModel = require("./mongoose/user");
 const bodyParser = require("body-parser");
 const userRouter = require("./route/user");
 const gachaRouter = require("./route/gacha");
-const boxRouter = require("./route/box");
 
 app.use(bodyParser.json());
 app.use("", userRouter);
 app.use("", gachaRouter);
-app.use("", boxRouter);
 
 mongoose.connect(
   "mongodb+srv://boat:boat@cluster0.0pjc1.mongodb.net/test",
