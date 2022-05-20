@@ -19,6 +19,8 @@ app.post("/register", async (req, res) => {
   let _password = req.body.password || "";
   let _role = req.body.role || "";
   let _tier = req.body.tier || "";
+  let _coin = req.body.coin;
+  let _inventory = req.body.inventory || "";
 
   let usernameid = await User.findOne({
     username: _username,
@@ -35,6 +37,8 @@ app.post("/register", async (req, res) => {
       password: _password,
       role: _role,
       tier: _tier,
+      coin: _coin,
+      inventory: _inventory,
     });
     await newUser.save();
 
@@ -79,6 +83,7 @@ app.post("/topup", async (req, res) => {
   let _username = req.body.username || "";
   let _password = req.body.password || "";
   let _coin = req.body.coin;
+
   const filter = { username: _username };
   if (_username === "") {
     resStatus = 400;
