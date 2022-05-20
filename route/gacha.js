@@ -51,8 +51,7 @@ app.post("/gacha", hostAuth, async (req, res) => {
 app.get("/gacha", hostAuth, async (req, res) => {
   let resStatus = 200;
   let resMessage = "add Success";
-
-  let allGacha = await Gacha.find();
+  let allGacha = await Gacha.find({});
 
   resMessage = allGacha;
 
