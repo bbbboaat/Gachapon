@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   role: String,
   tier: String,
   coin: Number,
-  inventory: Array,
+  inventory: String,
 });
 
 const User = mongoose.model("User", UserSchema);

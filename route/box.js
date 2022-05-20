@@ -13,7 +13,7 @@ app.post("/bronze", async (req, res) => {
   let _coin = req.body.coin;
   let _item = req.body.item;
   let _rank = req.body.rank;
-  let _inventory = req.body.inventory;
+  let _inventory = [req.body.inventory];
   const filter = { username: _username };
   if (_username === "") {
     resStatus = 400;
@@ -45,9 +45,12 @@ app.post("/bronze", async (req, res) => {
           rank: _rank,
         });
         const Nrand = gachaRankN[Math.floor(Math.random() * gachaRankN.length)];
-        console.log(gachaRankN);
+        console.log(Nrand);
+
+        const _pushinvent = Nrand.toString();
+        _invent = currentID.inventory + "," + _pushinvent;
         _coin = currentID.coin - 50;
-        const update = { coin: _coin };
+        const update = { coin: _coin, inventory: _invent };
         let user = await User.findOneAndUpdate(filter, update, {
           new: true,
         });
@@ -60,9 +63,11 @@ app.post("/bronze", async (req, res) => {
           rank: _rank,
         });
         const Rrand = gachaRankR[Math.floor(Math.random() * gachaRankR.length)];
-        console.log(gachaRankR);
+        console.log(Rrand);
+        const _pushinvent = Rrand.toString();
+        _invent = currentID.inventory + "," + _pushinvent;
         _coin = currentID.coin - 50;
-        const update = { coin: _coin };
+        const update = { coin: _coin, inventory: _invent };
         let user = await User.findOneAndUpdate(filter, update, {
           new: true,
         });
@@ -142,7 +147,7 @@ app.post("/silver", async (req, res) => {
   }
 });
 
-app.post("/silver", async (req, res) => {
+app.post("/gold", async (req, res) => {
   let resStatus = 200;
   let resMessage = "Success";
   let _username = req.body.username || "";
